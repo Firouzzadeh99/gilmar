@@ -1,0 +1,17 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  color: #fff;
+  background: var(--gradient-brand);
+  box-shadow: var(--shadow-brand);
+  transition: filter 150ms ease;
+
+  &:hover {
+    filter: brightness(1.04);
+  }
+
+  &:active {
+    filter: brightness(0.97);
+  }
+}

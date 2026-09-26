@@ -1,0 +1,14 @@
+// Design tokens shared between Sass and Tailwind's `@theme` block.
+
+// The Abar family itself comes from `next/font/local` as `--font-abar`.
+$font-sans-fallback: (system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif);
+$font-mono: (ui-monospace, "SFMono-Regular", "Cascadia Code", monospace);
+
+// Mirrors Tailwind's default breakpoints so Sass media queries stay in sync.
+$breakpoints: (
+  "sm": 40rem,
+  "md": 48rem,
+  "lg": 64rem,
+  "xl": 80rem,
+  "2xl": 96rem,
+);

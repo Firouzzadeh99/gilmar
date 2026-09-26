@@ -1,0 +1,23 @@
+.glow {
+  position: absolute;
+  top: -140px;
+  width: 640px;
+  height: 640px;
+  border-radius: 9999px;
+  pointer-events: none;
+  // Figma renders this as a 420px background blur; a radial falloff gives the
+  // same haze without paying for a full-size backdrop-filter on every paint.
+  background: radial-gradient(
+    closest-side,
+    var(--color-glow) 0%,
+    rgba(197, 216, 255, 0) 100%
+  );
+}
+
+.glowStart {
+  left: -140px;
+}
+
+.glowEnd {
+  right: -140px;
+}

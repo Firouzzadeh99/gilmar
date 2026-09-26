@@ -1,0 +1,131 @@
+@use "abstracts" as *;
+
+.arrowCircle {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1.2px solid transparent;
+  border-radius: 9999px;
+  // `border-image` cannot follow a border radius, so the gradient border is
+  // painted as a second background layer clipped to the border box.
+  background:
+    linear-gradient(var(--color-surface-soft), var(--color-surface-soft))
+      padding-box,
+    linear-gradient(161.17deg, #fff 12.7%, var(--color-border-light) 91.04%)
+      border-box;
+}
+
+// The photo ships as two slices that line up into one picture: the rounded card
+// sits at the back, the building block overlaps it from above. Offsets are
+// percentages of the 1280x581 frame so the pair scales together.
+// Both slices are cut out, so shadows use `drop-shadow` to follow the alpha
+// channel rather than the element box that `box-shadow` would trace.
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1280 / 581;
+}
+
+.frameTop {
+  position: absolute;
+  top: calc(19 / 581 * 100%);
+  left: calc(38 / 1280 * 100%);
+  width: calc(1171 / 1280 * 100%);
+  height: auto;
+  // This slice is exported with a soft feathered halo rather than a hard
+  // cutout, so its own semi-transparent pixels sit over the shadow and mute it.
+  // The value is pushed high to get any depth at all out of it.
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 26px 44px rgba(0, 0, 0, 0.4));
+}
+
+.frameBottom {
+  position: absolute;
+  top: calc(205 / 581 * 100%);
+  left: 0;
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  // A tight contact shadow plus a wide soft one reads as a single grounded
+  // shadow instead of the flat grey smear a lone large blur gives.
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.28))
+    drop-shadow(0 32px 56px rgba(0, 0, 0, 0.5));
+}
+
+// Film grain from the design, tiled at its native size. The speckles are white,
+// so the layer can stay a plain rectangle: over the page it disappears into the
+// white background and only shows where it sits on the photo.
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: url("../assets/images/bg-img.png");
+  background-repeat: repeat;
+  background-size: 1024px 1024px;
+}
+
+// Below `md` the frame is too short to hold these without them colliding, so
+// they drop out of the photo and stack underneath it.
+.badge {
+  display: flex;
+  width: fit-content;
+  margin: 16px auto 0;
+  align-items: center;
+  gap: 6px;
+  height: 48px;
+  padding: 8px 8px 8px 14px;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: var(--shadow-float);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-ink);
+  white-space: nowrap;
+
+  @include respond-to("md") {
+    position: absolute;
+    bottom: 17px;
+    left: 17px;
+    margin: 0;
+  }
+}
+
+.avatars {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.avatar {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #fff;
+  border-radius: 9999px;
+  object-fit: cover;
+
+  & + & {
+    margin-inline-start: -11px;
+  }
+}
+
+.caption {
+  width: 251px;
+  margin: 8px auto 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: center;
+  color: var(--color-ink);
+
+  @include respond-to("md") {
+    position: absolute;
+    right: 17px;
+    bottom: 24px;
+    margin: 0;
+    text-align: right;
+  }
+}
