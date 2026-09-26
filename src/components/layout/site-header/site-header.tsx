@@ -4,7 +4,8 @@ import Link from "next/link";
 import userIcon from "@/assets/icons/user-icon.png";
 import logo from "@/assets/images/logo.png";
 
-import { BrandButton } from "./brand-button";
+import { BrandButton } from "@/components/ui/brand-button";
+
 import styles from "./site-header.module.scss";
 
 const navItems = [
@@ -18,7 +19,7 @@ const navItems = [
 
 export function SiteHeader() {
   return (
-    <header className={`${styles.header} reveal`}>
+    <header className={styles.header}>
       <Link href="/" className="shrink-0">
         <Image
           src={logo}
@@ -39,9 +40,9 @@ export function SiteHeader() {
       {/* Visibility lives on wrappers: a module class on the button itself
           would outrank Tailwind's `hidden`, since CSS modules are unlayered. */}
       <div className="hidden xl:block">
-        <BrandButton className="h-[52px] w-[154px] justify-center gap-2 text-sm font-semibold">
-          <span>ورود یا ثبت‌نام</span>
+        <BrandButton className="h-[52px] w-[154px] justify-center gap-2 text-sm leading-8 font-extrabold">
           <Image src={userIcon} alt="" width={20} height={20} aria-hidden />
+          <span>ورود یا ثبت‌نام</span>
         </BrandButton>
       </div>
 

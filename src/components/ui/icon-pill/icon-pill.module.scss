@@ -1,0 +1,37 @@
+/* ==========================================================================
+   Pill
+
+   Figma's 84x52 comes from 30px side padding around the glyph. Centering
+   reproduces it without fighting `border-box`, which would otherwise eat the
+   stroke into the content area.
+   ========================================================================== */
+
+.pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 52px;
+  border-radius: 9999px;
+  background: var(--color-leaf-surface);
+  box-shadow: 0 0 0 4px #fff;
+}
+
+/* The container export is 92x60: the pill plus 4px of clearance for the white
+   ring. It carries only the 1px stroke, so the fill stays on `.pill`. */
+.shell {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 92px;
+  height: 60px;
+  /* Wider than its 84px parent, which Tailwind's `img { max-width: 100% }`
+     would otherwise squeeze. */
+  max-width: none;
+}
+
+.glyph {
+  position: relative;
+  height: auto;
+}

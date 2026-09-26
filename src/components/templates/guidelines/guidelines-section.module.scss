@@ -1,0 +1,78 @@
+@use "abstracts" as *;
+
+/* ==========================================================================
+   Section
+   ========================================================================== */
+
+.section {
+  position: relative;
+  padding-top: 88px;
+
+  @include respond-to("xl") {
+    padding-top: 140px;
+  }
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.heading {
+  margin-top: 24px;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -1.4px;
+  color: var(--color-ink);
+
+  @include respond-to("md") {
+    font-size: 32px;
+    line-height: 1.15;
+  }
+}
+
+.lede {
+  max-width: 732px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 32px;
+  color: var(--color-ink-muted);
+}
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+
+.cards {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 48px 128px;
+  margin-top: 40px;
+
+  @include respond-to("xl") {
+    margin-top: 56px;
+  }
+}
+
+// Decorative grid reused from the previous section, tucked behind the trailing
+// card. It bleeds past the row on purpose.
+.backdrop {
+  position: absolute;
+  top: -104px;
+  inset-inline-end: -120px;
+  z-index: -1;
+  width: 649px;
+  height: 394px;
+  max-width: none;
+  pointer-events: none;
+}

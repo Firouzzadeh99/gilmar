@@ -29,16 +29,32 @@ src/
 │   ├── layout.tsx
 │   └── page.tsx
 ├── assets/
-│   └── fonts/            # فونت محلی + تعریف next/font
-│       ├── index.ts
-│       └── abar/
+│   ├── fonts/            # فونت محلی + تعریف next/font
+│   ├── icons/
+│   └── images/
+├── components/
+│   ├── ui/               # المان‌های پایه و قابل استفاده در همه‌جا
+│   │   ├── brand-button/
+│   │   ├── cta-button/
+│   │   ├── feature-badge/
+│   │   └── scroll-fade/
+│   ├── layout/           # چیدمان کلی صفحه
+│   │   └── site-header/
+│   └── templates/        # سکشن‌های صفحه‌ی اصلی
+│       ├── hero/
+│       └── about/
 └── styles/
-    ├── globals.scss      # ورودی Tailwind + استایل‌های پایه
+    ├── globals.scss      # ورودی Tailwind + توکن‌ها + استایل‌های پایه
     └── abstracts/        # متغیرها و میکسین‌های Sass
         ├── _index.scss
         ├── _mixins.scss
         └── _variables.scss
 ```
+
+هر کامپوننت یک فولدر است و فایل استایلش (`*.module.scss`) کنار خودش می‌نشیند.
+`index.ts` هر فولدر فقط خروجی عمومی را re-export می‌کند، پس ایمپورت‌ها کوتاه
+می‌مانند: `@/components/templates/about`. سکشن‌های بزرگ‌تر به قطعه‌های کوچک‌تر
+شکسته می‌شوند (مثل `about-intro` و `about-gallery` داخل `templates/about`).
 
 ## استایل‌دهی
 

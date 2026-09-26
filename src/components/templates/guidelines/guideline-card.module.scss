@@ -1,0 +1,180 @@
+/* ==========================================================================
+   Card
+   ========================================================================== */
+
+.card {
+  position: relative;
+  width: 256px;
+}
+
+/* ==========================================================================
+   Artwork
+
+   The white panel is tilted, so the slot reserves its rotated bounding box
+   (128x160 at 15deg) instead of its own size. Otherwise the corners would
+   collide with the heading below.
+   ========================================================================== */
+
+.artwork {
+  position: relative;
+  width: 165px;
+  height: 188px;
+  margin: 0 auto;
+}
+
+.panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 128px;
+  height: 160px;
+  border: 1px solid var(--color-card-border);
+  border-radius: 24px;
+  background: var(--color-card-surface);
+}
+
+/* The under-sheet peeks out along the bottom edge of the front one. */
+.panelBack {
+  box-shadow: none;
+}
+
+.panelFront {
+  box-shadow: var(--shadow-card);
+}
+
+.illustration {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 104px;
+  height: auto;
+  transform: translate(-50%, -54%);
+}
+
+/* ==========================================================================
+   Copy
+   ========================================================================== */
+
+.title {
+  margin-top: 32px;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 32px;
+  text-align: center;
+  color: var(--color-ink);
+}
+
+.body {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: center;
+  color: var(--color-ink-muted);
+}
+
+/* ==========================================================================
+   Confetti
+
+   Offsets are measured from the top of the card, which is also the top of the
+   artwork slot.
+   ========================================================================== */
+
+.confetti {
+  position: absolute;
+}
+
+/* --- Variants -------------------------------------------------------------
+   Outer cards lean left (−15deg). The middle one leans the other way so the
+   row reads as a zigzag. The back sheet shares the tilt and is nudged down
+   in local space after the rotate, so the double edge stays under the card.
+   ------------------------------------------------------------------------- */
+
+.one {
+  .panelBack {
+    transform: translate(-50%, -50%) rotate(-15deg) translateY(10px);
+  }
+
+  .panelFront {
+    transform: translate(-50%, -50%) rotate(-15deg);
+  }
+
+  .confettiFirst {
+    top: 27px;
+    left: 206px;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    transform: rotate(-105deg);
+    background: var(--color-confetti-orchid);
+  }
+
+  .confettiSecond {
+    top: 98px;
+    left: 11px;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    transform: rotate(20deg);
+    background: var(--color-confetti-sky);
+  }
+}
+
+.two {
+  .panelBack {
+    transform: translate(-50%, -50%) rotate(15deg) translateY(10px);
+  }
+
+  .panelFront {
+    transform: translate(-50%, -50%) rotate(15deg);
+  }
+
+  .confettiFirst {
+    top: 81px;
+    left: 236px;
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    transform: rotate(165deg);
+    background: var(--color-confetti-rose);
+  }
+
+  .confettiSecond {
+    top: 14px;
+    left: 30px;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    transform: rotate(20deg);
+    background: var(--color-confetti-indigo);
+  }
+}
+
+.three {
+  .panelBack {
+    transform: translate(-50%, -50%) rotate(-15deg) translateY(10px);
+  }
+
+  .panelFront {
+    transform: translate(-50%, -50%) rotate(-15deg);
+  }
+
+  .confettiFirst {
+    top: 25px;
+    left: 217px;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    transform: rotate(20deg);
+    background: var(--color-confetti-amber);
+  }
+
+  .confettiSecond {
+    top: 191px;
+    left: 17px;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    transform: rotate(20deg);
+    background: var(--color-confetti-lilac);
+  }
+}

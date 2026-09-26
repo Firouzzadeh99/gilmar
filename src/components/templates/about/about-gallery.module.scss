@@ -1,0 +1,143 @@
+@use "abstracts" as *;
+
+/* ==========================================================================
+   Scaling wrapper
+
+   The collage is composed from the design's absolute pixel offsets, so it
+   cannot reflow. Narrow screens shrink the whole thing instead. `transform`
+   leaves the layout box at full size, so the wrapper carries the scaled
+   dimensions and the collage is taken out of flow inside it.
+   ========================================================================== */
+
+$collage-width: 601px;
+$collage-height: 642px;
+
+.wrapper {
+  position: relative;
+  --collage-scale: 0.52;
+  width: calc(#{$collage-width} * var(--collage-scale));
+  height: calc(#{$collage-height} * var(--collage-scale));
+
+  @include respond-to("sm") {
+    --collage-scale: 0.88;
+  }
+
+  @include respond-to("md") {
+    --collage-scale: 1;
+  }
+}
+
+.collage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $collage-width;
+  height: $collage-height;
+  transform: scale(var(--collage-scale));
+  transform-origin: top left;
+}
+
+/* ==========================================================================
+   Photos
+
+   Each export already carries its white frame, inner gradient and drop shadow,
+   so the element is sized to the full export box and pulled back by the shadow
+   bleed (49px left, 24px top) to land the visible frame on the design's
+   coordinates.
+   ========================================================================== */
+
+.photo {
+  position: absolute;
+}
+
+.photoOne {
+  z-index: 3;
+  top: 225px;
+  left: 8px;
+  width: 357px;
+  height: 401px;
+}
+
+.photoTwo {
+  z-index: 2;
+  top: -24px;
+  left: 105px;
+  width: 452px;
+  height: 455px;
+}
+
+.photoThree {
+  z-index: 1;
+  top: 258px;
+  left: 297px;
+  width: 357px;
+  height: 463px;
+}
+
+/* ==========================================================================
+   Floating badges
+   ========================================================================== */
+
+.badge {
+  position: absolute;
+  z-index: 4;
+}
+
+.badgeOne {
+  top: 128px;
+  left: 19px;
+}
+
+.badgeTwo {
+  top: 405px;
+  left: 250px;
+}
+
+/* ==========================================================================
+   Confetti
+   ========================================================================== */
+
+.confetti {
+  position: absolute;
+  z-index: 1;
+}
+
+.confettiLilac {
+  top: 170px;
+  left: 559px;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  transform: rotate(20deg);
+  background: var(--color-confetti-lilac);
+}
+
+.confettiIndigo {
+  top: 229px;
+  left: 534px;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  transform: rotate(20deg);
+  background: var(--color-confetti-indigo);
+}
+
+.confettiRose {
+  top: -7px;
+  left: 67px;
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  transform: rotate(165deg);
+  background: var(--color-confetti-rose);
+}
+
+.confettiSky {
+  top: 72px;
+  left: 113px;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  transform: rotate(20deg);
+  background: var(--color-confetti-sky);
+}

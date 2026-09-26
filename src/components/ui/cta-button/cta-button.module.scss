@@ -1,0 +1,55 @@
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+.cta {
+  justify-content: space-between;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* --- Sizes ---------------------------------------------------------------- */
+
+.lg {
+  width: 191px;
+  height: 52px;
+  padding-inline: 20px 6px;
+  font-size: 16px;
+}
+
+.sm {
+  width: 164px;
+  height: 46px;
+  padding-inline: 18px 5px;
+  font-size: 14px;
+}
+
+/* ==========================================================================
+   Arrow
+   ========================================================================== */
+
+.arrow {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1.2px solid transparent;
+  border-radius: 9999px;
+  /* `border-image` cannot follow a border radius, so the gradient border is
+     painted as a second background layer clipped to the border box. */
+  background:
+    linear-gradient(var(--color-surface-soft), var(--color-surface-soft))
+      padding-box,
+    linear-gradient(161.17deg, #fff 12.7%, var(--color-border-light) 91.04%)
+      border-box;
+}
+
+.lg .arrow {
+  width: 40px;
+  height: 40px;
+}
+
+.sm .arrow {
+  width: 36px;
+  height: 36px;
+}

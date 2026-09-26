@@ -1,0 +1,57 @@
+/* ==========================================================================
+   Pill
+   ========================================================================== */
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 244px;
+  height: 72px;
+  /* Physical in Figma, logical here: the icon sits on the inline start edge,
+     which is the right one in this RTL layout. */
+  padding: 12px;
+  padding-inline-end: 32px;
+  border-radius: 9999px;
+  background: var(--gradient-glass);
+  box-shadow: 0 40px 64px -32px rgba(15, 15, 15, 0.1);
+  backdrop-filter: blur(32px);
+}
+
+.label {
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 32px;
+  white-space: nowrap;
+  color: var(--color-ink);
+}
+
+/* ==========================================================================
+   Icon
+   ========================================================================== */
+
+.icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  /* Two background layers stand in for `border-image`, which ignores
+     `border-radius`. The gradient only tints the bottom of the ring. */
+  background:
+    var(--gradient-brand-fill) padding-box,
+    linear-gradient(180deg, rgba(15, 107, 41, 0) 73.52%, #0f6b29 100%)
+      border-box;
+  box-shadow: 0 24px 48px 0 rgba(0, 46, 37, 0.12);
+}
+
+// The glyph exports come at different intrinsic sizes; pin the width and let
+// each keep its own ratio.
+.iconGlyph {
+  width: 24px;
+  height: auto;
+}

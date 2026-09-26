@@ -1,28 +1,15 @@
 @use "abstracts" as *;
 
-.arrowCircle {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 1.2px solid transparent;
-  border-radius: 9999px;
-  // `border-image` cannot follow a border radius, so the gradient border is
-  // painted as a second background layer clipped to the border box.
-  background:
-    linear-gradient(var(--color-surface-soft), var(--color-surface-soft))
-      padding-box,
-    linear-gradient(161.17deg, #fff 12.7%, var(--color-border-light) 91.04%)
-      border-box;
-}
+/* ==========================================================================
+   Photo frame
 
-// The photo ships as two slices that line up into one picture: the rounded card
-// sits at the back, the building block overlaps it from above. Offsets are
-// percentages of the 1280x581 frame so the pair scales together.
-// Both slices are cut out, so shadows use `drop-shadow` to follow the alpha
-// channel rather than the element box that `box-shadow` would trace.
+   The photo ships as two slices that line up into one picture: the rounded card
+   sits at the back, the building block overlaps it from above. Offsets are
+   percentages of the 1280x581 frame so the pair scales together. Both slices
+   are cut out, so shadows use `drop-shadow` to follow the alpha channel rather
+   than the element box that `box-shadow` would trace.
+   ========================================================================== */
+
 .frame {
   position: relative;
   width: 100%;
@@ -63,13 +50,18 @@
   inset: 0;
   pointer-events: none;
   opacity: 0.08;
-  background-image: url("../assets/images/bg-img.png");
+  background-image: url("../../../assets/images/bg-img.png");
   background-repeat: repeat;
   background-size: 1024px 1024px;
 }
 
-// Below `md` the frame is too short to hold these without them colliding, so
-// they drop out of the photo and stack underneath it.
+/* ==========================================================================
+   Overlays
+
+   Below `md` the frame is too short to hold these without them colliding, so
+   they drop out of the photo and stack underneath it.
+   ========================================================================== */
+
 .badge {
   display: flex;
   width: fit-content;

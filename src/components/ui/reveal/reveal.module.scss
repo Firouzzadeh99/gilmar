@@ -1,0 +1,32 @@
+/* ==========================================================================
+   Entrance animation
+
+   Driven by a `data-visible` flag rather than a keyframe, so the same rule
+   covers both the elements that are on screen at load and the ones that scroll
+   into view later.
+   ========================================================================== */
+
+.reveal {
+  opacity: 0;
+  // A shorter rise and a longer ease keep the entrance soft — especially on
+  // the photo collage, which is large enough that a hard snap reads as a jump.
+  transform: translate3d(0, 14px, 0);
+  transition:
+    opacity 1400ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1400ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal[data-visible] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

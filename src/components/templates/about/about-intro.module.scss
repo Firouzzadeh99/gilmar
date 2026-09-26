@@ -1,0 +1,62 @@
+@use "abstracts" as *;
+
+/* ==========================================================================
+   Column
+   ========================================================================== */
+
+.intro {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Backdrop
+
+   Decorative grid anchored to the copy, bleeding past it on purpose. Painted
+   before its siblings, so the text stacks over it without needing a z-index.
+   ========================================================================== */
+
+.backdrop {
+  position: absolute;
+  top: -84px;
+  inset-inline-start: -80px;
+  width: 649px;
+  height: 394px;
+  max-width: none;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Copy
+   ========================================================================== */
+
+.heading {
+  margin-top: 24px;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -1.4px;
+  text-align: start;
+  color: var(--color-ink);
+
+  @include respond-to("md") {
+    font-size: 32px;
+    // The design sets 100%; Persian descenders need the extra room only when
+    // the line can no longer wrap.
+    line-height: 1.15;
+  }
+}
+
+.body {
+  margin-top: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: justify;
+  color: var(--color-ink-muted);
+}
+
+.action {
+  margin-top: 28px;
+}
