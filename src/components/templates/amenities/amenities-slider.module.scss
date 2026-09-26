@@ -1,0 +1,195 @@
+@use "abstracts" as *;
+
+/* ==========================================================================
+   Slider shell
+   ========================================================================== */
+
+.slider {
+  position: relative;
+  width: 100%;
+  background: transparent;
+}
+
+.swiper {
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
+  cursor: grab;
+
+  &:global(.swiper-grabbing) {
+    cursor: grabbing;
+  }
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  width: 200px !important;
+  height: 340px;
+  background: transparent;
+  transition:
+    width 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 500ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  @include respond-to("md") {
+    width: 254px !important;
+    height: 380px;
+  }
+
+  &:global(.swiper-slide-active) {
+    width: 240px !important;
+    z-index: 1;
+
+    @include respond-to("md") {
+      width: 288px !important;
+    }
+  }
+}
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: transparent;
+  box-shadow:
+    0 24px 48px 0 rgba(0, 46, 37, 0.12),
+    inset 0 10px 30px 0 rgba(0, 0, 0, 0.32);
+  transition: height 500ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  @include respond-to("md") {
+    height: 320px;
+  }
+}
+
+.slide:global(.swiper-slide-active) .card {
+  height: 320px;
+
+  @include respond-to("md") {
+    height: 360px;
+  }
+}
+
+.photo {
+  object-fit: cover;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    0deg,
+    rgba(7, 7, 8, 0.64) 0%,
+    rgba(7, 7, 8, 0) 100%
+  );
+}
+
+.label {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Nav buttons
+
+   Outer ring: brand gradient + page-colored border. Inner disc: soft white
+   radial highlight with a green arrow centered on top.
+   ========================================================================== */
+
+.nav {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 3px solid var(--color-page);
+  border-radius: 9999px;
+  background: linear-gradient(
+    229.52deg,
+    var(--color-brand-blue) -18.98%,
+    var(--color-brand-green) 121.29%
+  );
+  transition:
+    transform 300ms ease,
+    filter 150ms ease,
+    opacity 300ms ease;
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+
+  &:active {
+    filter: brightness(0.97);
+  }
+}
+
+.navFace {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.navDisc {
+  display: grid;
+  place-items: center;
+  width: 20.5px;
+  height: 20.5px;
+  border-radius: 9999px;
+  color: var(--color-brand-green);
+  background:
+    radial-gradient(
+      173.81% 173.81% at 50% -4.76%,
+      #fff 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    #fff;
+  box-shadow: 0 2.23px 5.19px 0 rgba(41, 61, 61, 0.12);
+}
+
+.arrow {
+  display: block;
+  flex-shrink: 0;
+}
+
+.navNext {
+  right: 8px;
+  transform: translateY(-50%);
+
+  &:hover {
+    transform: translateY(-50%) scale(1.04);
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.97);
+  }
+}
+
+.navPrev {
+  left: 148px;
+  transform: translateY(-50%) rotate(180deg);
+
+  &:hover {
+    transform: translateY(-50%) rotate(180deg) scale(1.04);
+  }
+
+  &:active {
+    transform: translateY(-50%) rotate(180deg) scale(0.97);
+  }
+}

@@ -1,0 +1,58 @@
+@use "abstracts" as *;
+
+/* ==========================================================================
+   Column
+
+   Figma sizes the copy stack to 620×194 with a 24px gap between the pill,
+   heading and body.
+   ========================================================================== */
+
+.intro {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Backdrop
+   ========================================================================== */
+
+.backdrop {
+  position: absolute;
+  top: -84px;
+  inset-inline-start: -80px;
+  width: 649px;
+  height: 394px;
+  max-width: none;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Copy
+   ========================================================================== */
+
+.heading {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -1px;
+  text-align: start;
+  color: var(--color-ink);
+
+  @include respond-to("md") {
+    font-size: 28px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+}
+
+.body {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 28px;
+  text-align: start;
+  color: var(--color-ink-muted);
+}

@@ -1,5 +1,6 @@
 import { SiteHeader } from "@/components/layout/site-header";
 import { AboutSection } from "@/components/templates/about";
+import { AmenitiesSection } from "@/components/templates/amenities";
 import { GuidelinesSection } from "@/components/templates/guidelines";
 import { Hero } from "@/components/templates/hero";
 import { Reveal } from "@/components/ui/reveal";
@@ -9,9 +10,13 @@ import styles from "./page.module.scss";
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-dvh overflow-hidden">
-      <div aria-hidden className={`${styles.glow} ${styles.glowStart}`} />
-      <div aria-hidden className={`${styles.glow} ${styles.glowEnd}`} />
+    // Overflow stays visible so the amenities slider can bleed past the left
+    // edge; the glow blobs are clipped inside their own wrapper instead.
+    <main className="relative min-h-dvh">
+      <div aria-hidden className={styles.glowLayer}>
+        <div className={`${styles.glow} ${styles.glowStart}`} />
+        <div className={`${styles.glow} ${styles.glowEnd}`} />
+      </div>
 
       <div className="relative mx-auto w-full max-w-[1440px] px-4 pt-6 md:px-8 xl:px-20 xl:pt-10">
         <ScrollFade>
@@ -22,6 +27,7 @@ export default function HomePage() {
         <Hero />
         <AboutSection />
         <GuidelinesSection />
+        <AmenitiesSection />
       </div>
     </main>
   );

@@ -1,0 +1,61 @@
+@use "abstracts" as *;
+
+/* ==========================================================================
+   Section
+
+   Intro and slider are separate columns. The slider is clipped to its own
+   slot so slides never paint over the copy — they disappear under that edge
+   the way Figma crops them.
+   ========================================================================== */
+
+.section {
+  position: relative;
+  padding-top: 88px;
+  padding-bottom: 40px;
+
+  @include respond-to("xl") {
+    padding-top: 140px;
+    padding-bottom: 80px;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 80px;
+
+  @include respond-to("xl") {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+}
+
+.introSlot {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  // Opaque page fill so anything that might peek from the slider is covered.
+  background: var(--color-page);
+
+  @include respond-to("xl") {
+    width: 520px;
+    flex-shrink: 0;
+  }
+}
+
+.sliderSlot {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  background: transparent;
+
+  @include respond-to("xl") {
+    // Extend past the page padding on the physical left so the leading card
+    // can hang half off the viewport, still inside this clipped slot.
+    margin-inline-end: calc(-5rem - 140px);
+  }
+}
