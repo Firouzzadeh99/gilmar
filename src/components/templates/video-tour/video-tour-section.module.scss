@@ -1,0 +1,248 @@
+@use "abstracts" as *;
+
+/* ==========================================================================
+   Section
+
+   Map photo on the physical left; copy column on the right. Grid flexes so
+   the stack stays inside the page at 100% zoom (no absolute left offset).
+   ========================================================================== */
+
+$frame-width: 914px;
+$frame-height: 640px;
+
+.section {
+  position: relative;
+  padding-top: 64px;
+
+  @include respond-to("xl") {
+    padding-top: 100px;
+  }
+}
+
+// Narrower copy so the photo + play button get more room.
+$copy-width: 420px;
+$media-tuck: 48px;
+
+.stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  @include respond-to("xl") {
+    display: grid;
+    grid-template-columns: $copy-width minmax(0, 1fr);
+    align-items: center;
+    height: $frame-height;
+    gap: 0;
+  }
+}
+
+/* ==========================================================================
+   Copy column
+   ========================================================================== */
+
+.copySlot {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+
+  @include respond-to("xl") {
+    grid-column: 1;
+    grid-row: 1;
+    width: $copy-width;
+  }
+}
+
+.copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.backdrop {
+  position: absolute;
+  top: -84px;
+  inset-inline-start: -80px;
+  z-index: -1;
+  width: 649px;
+  height: 394px;
+  max-width: none;
+  pointer-events: none;
+}
+
+.heading {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -1.4px;
+  text-align: right;
+  color: var(--color-ink);
+
+  @include respond-to("md") {
+    font-size: 32px;
+    line-height: 1.15;
+  }
+}
+
+.body {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: right;
+  color: var(--color-ink-muted);
+}
+
+.action {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Media — masked photo, play button, compass
+   ========================================================================== */
+
+.mediaSlot {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+
+  @include respond-to("xl") {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    width: min(#{$frame-width}, calc(100% + #{$media-tuck}));
+    height: $frame-height;
+    margin-inline-start: calc(-1 * #{$media-tuck});
+  }
+}
+
+.media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 914 / 640;
+
+  @include respond-to("xl") {
+    height: $frame-height;
+    aspect-ratio: auto;
+  }
+}
+
+.photoFrame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  mask-image: var(--map-mask);
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}
+
+.photo {
+  object-fit: cover;
+  object-position: left center;
+}
+
+/* --- Play button ----------------------------------------------------------
+   Figma: 120px frosted ring at (197, 285), 78.125px white disc inside.
+   ------------------------------------------------------------------------- */
+
+.play {
+  position: absolute;
+  top: calc(285 / 640 * 100%);
+  left: calc(197 / 914 * 100%);
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border-radius: 9999px;
+  background: #ffffff4d;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  @include respond-to("md") {
+    width: 120px;
+    height: 120px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: #ffffff4d;
+    animation: play-pulse 2.4s ease-out infinite;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--color-brand-green);
+    outline-offset: 4px;
+  }
+}
+
+.playDisc {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 47px;
+  height: 47px;
+  border-radius: 9999px;
+  background: #fff;
+
+  @include respond-to("md") {
+    width: 78.125px;
+    height: 78.125px;
+  }
+}
+
+.playIcon {
+  width: 13px;
+  height: auto;
+  transform: translateX(1px);
+
+  @include respond-to("md") {
+    width: 21px;
+    transform: translateX(2px);
+  }
+}
+
+@keyframes play-pulse {
+  0% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play::before {
+    animation: none;
+  }
+}
+
+/* --- Compass --------------------------------------------------------------- */
+
+.compass {
+  position: absolute;
+  top: calc(560 / 640 * 100%);
+  left: calc(677 / 914 * 100%);
+  width: calc(118 / 914 * 100%);
+  height: auto;
+  pointer-events: none;
+}

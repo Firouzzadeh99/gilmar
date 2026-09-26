@@ -57,10 +57,11 @@
   overflow: hidden;
   border-radius: 20px;
   background: transparent;
-  box-shadow:
-    0 24px 48px 0 rgba(0, 46, 37, 0.12),
-    inset 0 10px 30px 0 rgba(0, 0, 0, 0.32);
-  transition: height 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  // Soft bottom contact only — the active card overrides this to almost none.
+  box-shadow: 0 10px 18px -14px rgba(0, 0, 0, 0.22);
+  transition:
+    height 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 500ms cubic-bezier(0.22, 1, 0.36, 1);
 
   @include respond-to("md") {
     height: 320px;
@@ -69,6 +70,8 @@
 
 .slide:global(.swiper-slide-active) .card {
   height: 320px;
+  // Active card stays clean — near-flat, no heavy drop under the center image.
+  box-shadow: 0 4px 10px -10px rgba(0, 0, 0, 0.12);
 
   @include respond-to("md") {
     height: 360px;
@@ -110,10 +113,11 @@
    ========================================================================== */
 
 .nav {
+  // Mobile: swipe only — hide arrow buttons entirely.
+  display: none;
   position: absolute;
   top: 50%;
   z-index: 3;
-  display: grid;
   place-items: center;
   width: 46px;
   height: 46px;
@@ -129,6 +133,10 @@
     transform 300ms ease,
     filter 150ms ease,
     opacity 300ms ease;
+
+  @include respond-to("md") {
+    display: grid;
+  }
 
   &:hover {
     filter: brightness(1.05);

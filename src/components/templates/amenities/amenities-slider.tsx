@@ -89,6 +89,7 @@ export function AmenitiesSlider() {
         speed={650}
         autoplay={{
           delay: 5000,
+          reverseDirection: true,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}

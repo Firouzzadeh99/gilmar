@@ -33,5 +33,7 @@
 
 .glyph {
   position: relative;
+  display: grid;
+  place-items: center;
   height: auto;
 }

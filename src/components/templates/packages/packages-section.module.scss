@@ -1,0 +1,46 @@
+@use "abstracts" as *;
+
+/* ==========================================================================
+   Section — copy on the right, masked slider on the left (RTL row)
+   ========================================================================== */
+
+.section {
+  position: relative;
+  padding-top: 88px;
+  padding-bottom: 40px;
+
+  @include respond-to("xl") {
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+
+  @include respond-to("xl") {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+}
+
+.introSlot {
+  width: 100%;
+  max-width: 560px;
+
+  @include respond-to("xl") {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.mediaSlot {
+  width: 100%;
+  max-width: 620px;
+  flex-shrink: 0;
+}

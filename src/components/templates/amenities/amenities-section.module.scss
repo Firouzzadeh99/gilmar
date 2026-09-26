@@ -52,8 +52,13 @@
   min-width: 0;
   overflow: hidden;
   background: transparent;
+  // Eat the peeking next-card on the text side so only a clean cut remains.
+  padding-inline-start: 28px;
 
   @include respond-to("xl") {
+    // Stronger inset toward the intro: the next slide sits under this pad
+    // and gets clipped — no obvious half-card beside the copy.
+    padding-inline-start: 7px;
     // Extend past the page padding on the physical left so the leading card
     // can hang half off the viewport, still inside this clipped slot.
     margin-inline-end: calc(-5rem - 140px);

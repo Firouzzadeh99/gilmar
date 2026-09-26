@@ -3,6 +3,9 @@ import { AboutSection } from "@/components/templates/about";
 import { AmenitiesSection } from "@/components/templates/amenities";
 import { GuidelinesSection } from "@/components/templates/guidelines";
 import { Hero } from "@/components/templates/hero";
+import { PackagesSection } from "@/components/templates/packages";
+import { RoomsSection } from "@/components/templates/rooms";
+import { VideoTourSection } from "@/components/templates/video-tour";
 import { Reveal } from "@/components/ui/reveal";
 import { ScrollFade } from "@/components/ui/scroll-fade";
 
@@ -28,6 +31,9 @@ export default function HomePage() {
         <AboutSection />
         <GuidelinesSection />
         <AmenitiesSection />
+        <RoomsSection />
+        <VideoTourSection />
+        <PackagesSection />
       </div>
     </main>
   );

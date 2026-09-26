@@ -25,7 +25,7 @@ export function SiteHeader() {
           src={logo}
           alt="اقامتگاه بوم‌گردی گیلمار"
           priority
-          className="h-[38px] w-auto xl:h-[53px]"
+          className="h-[38px] w-[108px] xl:h-[53px] xl:w-[150px]"
         />
       </Link>
 

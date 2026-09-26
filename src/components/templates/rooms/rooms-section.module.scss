@@ -1,0 +1,82 @@
+@use "abstracts" as *;
+
+/* ==========================================================================
+   Section
+   ========================================================================== */
+
+.section {
+  position: relative;
+  padding-top: 88px;
+  padding-bottom: 40px;
+
+  @include respond-to("xl") {
+    padding-top: 140px;
+    padding-bottom: 80px;
+  }
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+// Grid backdrop from earlier sections, parked on the physical left of the copy.
+.backdrop {
+  position: absolute;
+  top: -84px;
+  left: -80px;
+  z-index: -1;
+  width: 649px;
+  height: 394px;
+  max-width: none;
+  pointer-events: none;
+}
+
+.heading {
+  margin-top: 24px;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 100%;
+  letter-spacing: -1.4px;
+  color: var(--color-ink);
+
+  @include respond-to("md") {
+    font-size: 32px;
+  }
+}
+
+.lede {
+  max-width: 560px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--color-ink-muted);
+}
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 40px;
+
+  @include respond-to("xl") {
+    margin-top: 56px;
+    flex-wrap: nowrap;
+  }
+}
