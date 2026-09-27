@@ -1,0 +1,345 @@
+@use "abstracts" as *;
+
+/* ==========================================================================
+   Guests — testimonials with orbiting avatars + synced dots
+   ========================================================================== */
+
+.section {
+  position: relative;
+  overflow-x: clip;
+  padding-top: 72px;
+  padding-bottom: 24px;
+
+  @include respond-to("xl") {
+    padding-top: 100px;
+    padding-bottom: 40px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Header — no decorative bg-section wash; IconPill only
+   -------------------------------------------------------------------------- */
+
+.header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.heading {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: var(--color-ink);
+
+  @include respond-to("md") {
+    font-size: 32px;
+    letter-spacing: -1.4px;
+  }
+}
+
+.lede {
+  margin: 0;
+  max-width: 560px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 28px;
+  color: var(--color-ink-muted);
+
+  @include respond-to("md") {
+    font-size: 14px;
+    line-height: 32px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Stage — map backdrop + orbiting profiles + comment stack
+   -------------------------------------------------------------------------- */
+
+.stage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  margin-top: 28px;
+  min-height: 420px;
+  padding-block: 48px 12px;
+  overflow: hidden;
+
+  @include respond-to("md") {
+    margin-top: 40px;
+    min-height: 520px;
+    padding-block: 56px 20px;
+  }
+}
+
+.map {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 0;
+  width: 100%;
+  max-width: 1169px;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.stack {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(500px, calc(100% - 32px));
+  gap: 24px;
+  transform: translate(-50%, -50%);
+}
+
+.swiper {
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+
+  &:global(.swiper-grabbing) {
+    cursor: grabbing;
+  }
+}
+
+.slide {
+  width: 100% !important;
+  height: auto;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   Active avatar — sits on the top edge of the card
+   -------------------------------------------------------------------------- */
+
+.activeAvatar {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  margin-inline: auto;
+  margin-bottom: -62px;
+  overflow: hidden;
+  border: 3px solid #fff;
+  border-radius: 100px;
+  background: var(--color-surface);
+}
+
+.activePhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   Comment card
+   -------------------------------------------------------------------------- */
+
+.card {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  min-height: 264px;
+  padding: 56px 24px 24px;
+  border: 1px solid #eef3f6;
+  border-radius: 16px;
+  background: #fcfdfd;
+  box-shadow:
+    0 0 0 6px #fff,
+    0 24px 48px 0 #002e251f;
+  user-select: none;
+}
+
+.quotes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.quoteMark {
+  display: block;
+  width: 20px;
+  height: auto;
+  object-fit: contain;
+}
+
+.quote {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 28px;
+  text-align: center;
+  color: #4c4c4d;
+
+  @include respond-to("md") {
+    font-size: 14px;
+    line-height: 32px;
+  }
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 32px;
+  text-align: center;
+  color: #1a1a1a;
+}
+
+.role {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: center;
+  color: var(--color-ink-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Dots
+   -------------------------------------------------------------------------- */
+
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: #d5dee5;
+  transition:
+    background 200ms ease,
+    transform 200ms ease;
+
+  &:hover {
+    transform: scale(1.15);
+  }
+}
+
+.dotActive {
+  background: #02adf7;
+}
+
+/* --------------------------------------------------------------------------
+   Satellite avatars — desktop orbit; hidden on small screens
+   -------------------------------------------------------------------------- */
+
+.satellite {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  overflow: hidden;
+  border: 3px solid #fff;
+  border-radius: 100px;
+  background: var(--color-surface);
+  box-shadow: 0 8px 20px -10px rgba(15, 15, 15, 0.28);
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
+
+  @include respond-to("md") {
+    display: block;
+  }
+
+  &:hover {
+    transform: scale(1.06);
+    box-shadow: 0 10px 24px -8px rgba(15, 15, 15, 0.34);
+  }
+
+  &[aria-pressed="true"] {
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, #02adf7 45%, transparent),
+      0 8px 20px -10px rgba(15, 15, 15, 0.28);
+  }
+}
+
+.satellitePhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Orbit positions relative to the stage (Figma-ish scatter). */
+.slotA {
+  top: 18%;
+  left: 10%;
+}
+
+.slotB {
+  top: 8%;
+  left: 22%;
+}
+
+.slotC {
+  top: 42%;
+  left: 4%;
+}
+
+.slotD {
+  top: 68%;
+  left: 14%;
+}
+
+.slotE {
+  top: 12%;
+  right: 18%;
+  left: auto;
+}
+
+.slotF {
+  top: 38%;
+  right: 6%;
+  left: auto;
+}
+
+.slotG {
+  top: 64%;
+  right: 16%;
+  left: auto;
+}

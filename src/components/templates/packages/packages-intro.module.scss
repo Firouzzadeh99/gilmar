@@ -73,11 +73,16 @@
 .features {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   // White ring is 6px each side — keep clear air between the rings.
   gap: 32px;
   margin: 8px 0 0;
   padding: 0;
   list-style: none;
+
+  @include respond-to("xl") {
+    justify-content: flex-start;
+  }
 }
 
 .feature {

@@ -1,11 +1,10 @@
 @use "abstracts" as *;
 
 /* ==========================================================================
-   Section
+   Section — Figma 1440×346, copy + slider
 
-   Intro and slider are separate columns. The slider is clipped to its own
-   slot so slides never paint over the copy — they disappear under that edge
-   the way Figma crops them.
+   Slider bleeds left (-144). Overflow stays hidden so slides never show under
+   the copy; intro keeps a page fill as the hard cover on that side.
    ========================================================================== */
 
 .section {
@@ -23,12 +22,13 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 80px;
+  gap: 40px;
 
   @include respond-to("xl") {
     flex-direction: row;
     align-items: center;
-    gap: 24px;
+    height: 346px;
+    gap: 40px;
   }
 }
 
@@ -36,11 +36,11 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  // Opaque page fill so anything that might peek from the slider is covered.
   background: var(--color-page);
 
   @include respond-to("xl") {
-    width: 520px;
+    // Slightly narrower so the slider can show more of the right card.
+    width: 44%;
     flex-shrink: 0;
   }
 }
@@ -48,19 +48,16 @@
 .sliderSlot {
   position: relative;
   z-index: 1;
-  flex: 1;
-  min-width: 0;
+  width: 100%;
   overflow: hidden;
   background: transparent;
-  // Eat the peeking next-card on the text side so only a clean cut remains.
-  padding-inline-start: 28px;
 
   @include respond-to("xl") {
-    // Stronger inset toward the intro: the next slide sits under this pad
-    // and gets clipped — no obvious half-card beside the copy.
-    padding-inline-start: 7px;
-    // Extend past the page padding on the physical left so the leading card
-    // can hang half off the viewport, still inside this clipped slot.
-    margin-inline-end: calc(-5rem - 140px);
+    width: calc(56% + 144px);
+    height: 346px;
+    margin-inline-end: -174px;
+    // Slightly left of the prior 40px nudge.
+    transform: translateX(16px);
+    overflow: hidden;
   }
 }

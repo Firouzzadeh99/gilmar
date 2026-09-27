@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { AboutSection } from "@/components/templates/about";
 import { AmenitiesSection } from "@/components/templates/amenities";
 import { FaqSection } from "@/components/templates/faq";
+import { GuestsSection } from "@/components/templates/guests";
 import { GuidelinesSection } from "@/components/templates/guidelines";
 import { Hero } from "@/components/templates/hero";
 import { MagazineSection } from "@/components/templates/magazine";
@@ -38,6 +39,7 @@ export default function HomePage() {
         <AmenitiesSection />
         <RoomsSection />
         <VideoTourSection />
+        <GuestsSection />
         <PackagesSection />
         <MagazineSection />
         <FaqSection />

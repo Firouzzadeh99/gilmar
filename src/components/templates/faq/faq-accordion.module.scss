@@ -91,14 +91,15 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 
-/* Height animates via the grid 0fr → 1fr trick; no JS measuring. */
+/* Height animates via the grid 0fr → 1fr trick; open waits a beat, then eases. */
 .panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 400ms $ease;
+  transition: grid-template-rows 420ms $ease;
 
   .item[data-open] & {
     grid-template-rows: 1fr;
+    transition-delay: 140ms;
   }
 }
 
@@ -115,4 +116,15 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
   letter-spacing: 0;
   text-align: right;
   color: var(--color-ink-muted);
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 320ms $ease,
+    transform 320ms $ease;
+
+  .item[data-open] & {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 260ms;
+  }
 }
