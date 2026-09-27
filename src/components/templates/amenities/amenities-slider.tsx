@@ -3,7 +3,6 @@
 import Image, { type StaticImageData } from "next/image";
 import { useRef, useState } from "react";
 import type { Swiper as SwiperType } from "swiper";
-import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import frameOne from "@/assets/images/frame1.png";
@@ -78,7 +77,6 @@ export function AmenitiesSlider() {
 
       <Swiper
         className={styles.swiper}
-        modules={[Autoplay]}
         dir="ltr"
         loop
         grabCursor
@@ -87,12 +85,6 @@ export function AmenitiesSlider() {
         centeredSlides
         initialSlide={1}
         speed={650}
-        autoplay={{
-          delay: 5000,
-          reverseDirection: true,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }}
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
           swiper.slideToLoop(1, 0);

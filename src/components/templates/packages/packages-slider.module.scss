@@ -86,7 +86,7 @@
    `width: 100%`, which in RTL pushes the bullets to the right; reset it. */
 .dots {
   position: absolute;
-  bottom: 5px !important;
+  bottom: 10px !important;
   left: 35px !important;
    z-index: 3;
   display: flex;
