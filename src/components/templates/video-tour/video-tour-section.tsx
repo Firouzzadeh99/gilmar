@@ -49,13 +49,12 @@ export function VideoTourSection() {
         <Reveal delay={160} className={styles.mediaSlot}>
           <div className={styles.media}>
             <div className={styles.photoFrame} style={maskStyle}>
-              <Image
-                src={tourPhoto}
+              <img
+                src={tourPhoto.src}
                 alt="جنگل و پل سنگی اطراف اقامتگاه گیلمار"
-                fill
-                sizes="(max-width: 1280px) 100vw, 914px"
                 className={styles.photo}
               />
+              <span aria-hidden className={styles.shade} />
             </div>
 
             <button

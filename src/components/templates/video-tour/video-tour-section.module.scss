@@ -19,8 +19,9 @@ $frame-height: 640px;
   }
 }
 
-// Narrower copy so the photo + play button get more room.
-$copy-width: 420px;
+// Figma copy stack: 502×256 with 16px gap.
+$copy-width: 502px;
+$copy-height: 256px;
 $media-tuck: 48px;
 
 .stage {
@@ -59,6 +60,12 @@ $media-tuck: 48px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
+
+  @include respond-to("xl") {
+    width: $copy-width;
+    height: $copy-height;
+  }
 }
 
 .backdrop {
@@ -139,9 +146,29 @@ $media-tuck: 48px;
   mask-repeat: no-repeat;
 }
 
+// Bigger than the mask, shifted left so the forest pushes into the silhouette.
 .photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150%;
+  height: 113%;
+  max-width: none;
   object-fit: cover;
-  object-position: left center;
+  object-position: left bottom;
+  transform: translate(-18%, -4%);
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    0deg,
+    rgba(7, 7, 8, 0.64) 0%,
+    rgba(7, 7, 8, 0) 100%
+  );
 }
 
 /* --- Play button ----------------------------------------------------------

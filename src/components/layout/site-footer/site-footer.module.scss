@@ -1,0 +1,270 @@
+@use "abstracts" as *;
+
+/* ==========================================================================
+   Footer — Figma: 1280 stack, 20px gap between panel and pill bar
+   ========================================================================== */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-top: 64px;
+  padding-bottom: 40px;
+
+  @include respond-to("xl") {
+    padding-top: 80px;
+    padding-bottom: 56px;
+  }
+}
+
+/* ==========================================================================
+   Top panel — 1280×276
+   ========================================================================== */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  padding: 24px;
+  border: 1px solid var(--color-hairline);
+  border-radius: 20px;
+  background: var(--color-surface);
+  box-shadow: 0 0 0 6px #fff;
+
+  @include respond-to("xl") {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0;
+    height: 276px;
+    // Figma: only inset on the brand side; map sits flush on the far edge.
+    padding: 46px 0;
+    padding-inline-start: 24px;
+    padding-inline-end: 0;
+    overflow: hidden;
+  }
+}
+
+/* Brand column — 314×184 */
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+
+  @include respond-to("xl") {
+    width: 314px;
+    flex-shrink: 0;
+  }
+}
+
+.logo {
+  width: 169px;
+  height: 53px;
+  object-fit: contain;
+}
+
+.about {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: justify;
+  color: var(--color-ink-muted);
+}
+
+/* Explore + contact — gap 72 */
+.middle {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex: 1;
+  min-width: 0;
+
+  @include respond-to("xl") {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 72px;
+    padding-inline: 40px 24px;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// Keep explore links on one line — was wrapping when the middle band got tight.
+.explore {
+  flex-shrink: 0;
+
+  @include respond-to("xl") {
+    min-width: 160px;
+  }
+
+  .link {
+    white-space: nowrap;
+  }
+
+  .heading {
+    white-space: nowrap;
+  }
+}
+
+.contactCol {
+  flex: 1;
+  min-width: 0;
+}
+
+.heading {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: right;
+  color: var(--color-ink);
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  position: relative;
+  padding-inline-start: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-ink-muted);
+  transition: color 180ms ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0.55em;
+    inset-inline-start: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    background: var(--color-ink-muted);
+  }
+
+  &:hover {
+    color: var(--color-ink);
+  }
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 28px;
+  text-align: right;
+  color: var(--color-ink-muted);
+
+  p {
+    margin: 0;
+  }
+}
+
+/* Map — 364×276 */
+.map {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 364 / 276;
+  border-radius: 16px;
+
+  @include respond-to("xl") {
+    width: 364px;
+    height: 276px;
+    flex-shrink: 0;
+    aspect-ratio: auto;
+    border-radius: 0;
+    // Cancel the panel's vertical padding so the map fills edge-to-edge.
+    margin-block: -46px;
+  }
+}
+
+.mapPhoto {
+  object-fit: cover;
+  object-position: left center;
+}
+
+/* ==========================================================================
+   Bottom bar — 1280×56 pill
+   ========================================================================== */
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 56px;
+  padding: 8px 24px;
+  border: 1px solid var(--color-hairline);
+  border-radius: 9999px;
+  background: var(--color-surface);
+  box-shadow: 0 0 0 6px #fff;
+}
+
+.copy {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: right;
+  color: var(--color-ink-muted);
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.social {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 9999px;
+  background:
+    radial-gradient(
+      27.92% 100% at 50% 0%,
+      rgba(255, 255, 255, 0.24) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    linear-gradient(229.52deg, #02adf7 -18.98%, #26e05a 121.29%);
+  transition: filter 150ms ease;
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+}
+
+.socialIcon {
+  width: 20px;
+  height: auto;
+  // Assets are dark glyphs on black — flatten to white on the gradient disc.
+  filter: brightness(0) invert(1);
+}

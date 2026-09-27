@@ -1,0 +1,111 @@
+@use "abstracts" as *;
+
+/* ==========================================================================
+   Section — intro + illustration on the right, accordion on the left (RTL)
+   ========================================================================== */
+
+.section {
+  position: relative;
+  padding-top: 88px;
+  padding-bottom: 40px;
+
+  @include respond-to("xl") {
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  @include respond-to("xl") {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+  }
+}
+
+.introSlot {
+  width: 100%;
+
+  @include respond-to("xl") {
+    flex: 1;
+    min-width: 0;
+    max-width: 560px;
+  }
+}
+
+.listSlot {
+  width: 100%;
+
+  @include respond-to("xl") {
+    width: 620px;
+    flex-shrink: 0;
+  }
+}
+
+/* ==========================================================================
+   Intro
+   ========================================================================== */
+
+.intro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// Grid backdrop behind the pill, same treatment as the earlier sections.
+.backdrop {
+  position: absolute;
+  top: -84px;
+  inset-inline-start: -80px;
+  z-index: -1;
+  width: 649px;
+  height: 394px;
+  max-width: none;
+  pointer-events: none;
+}
+
+.heading {
+  margin: 8px 0 0;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -1.4px;
+  text-align: right;
+  color: var(--color-ink);
+
+  @include respond-to("md") {
+    font-size: 32px;
+    line-height: 100%;
+  }
+}
+
+.lede {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: right;
+  color: var(--color-ink-muted);
+}
+
+.art {
+  align-self: center;
+  width: min(100%, 320px);
+  height: auto;
+  margin-top: 16px;
+  // drop-shadow follows the PNG's alpha, so the glow hugs the binoculars
+  // instead of drawing a rectangle.
+  filter: drop-shadow(0 16px 28px rgba(2, 173, 247, 0.18));
+
+  @include respond-to("xl") {
+    width: 420px;
+    margin-top: 32px;
+  }
+}

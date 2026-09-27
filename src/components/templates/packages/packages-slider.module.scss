@@ -57,8 +57,8 @@
    cutout of the mask, outside the photo. */
 .caption {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  top: 100px !important;
+  left: 0px !important;
   z-index: 2;
   max-width: 150px;
   margin: 0;

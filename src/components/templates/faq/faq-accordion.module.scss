@@ -1,0 +1,118 @@
+@use "abstracts" as *;
+
+$ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include respond-to("xl") {
+    width: 620px;
+  }
+}
+
+/* ==========================================================================
+   Item — closed: 64px pill with white ring. Open: 20px card + soft drop.
+   ========================================================================== */
+
+.item {
+  border: 1px solid var(--color-hairline);
+  border-radius: 32px;
+  background: var(--color-surface);
+  box-shadow: 0 0 0 6px #fff;
+  transition:
+    border-radius 350ms $ease,
+    box-shadow 350ms $ease;
+
+  &[data-open] {
+    border-radius: 20px;
+    box-shadow:
+      0 0 0 6px #fff,
+      0 24px 48px 0 #002e251f;
+  }
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 62px;
+  padding: 16px;
+  text-align: start;
+  cursor: pointer;
+  transition: padding 350ms $ease;
+
+  .item[data-open] & {
+    padding: 24px 16px 0;
+  }
+}
+
+.question {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 32px;
+  letter-spacing: 0;
+  color: var(--color-ink);
+}
+
+/* 30px brand disc — plus when closed, minus when open. */
+.toggle {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  background: linear-gradient(229.52deg, #02adf7 -18.98%, #26e05a 121.29%);
+}
+
+.bar {
+  position: absolute;
+  width: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background: #fff;
+  transition: transform 300ms $ease;
+}
+
+.barVertical {
+  transform: rotate(90deg);
+
+  .item[data-open] & {
+    transform: rotate(90deg) scaleX(0);
+  }
+}
+
+/* Height animates via the grid 0fr → 1fr trick; no JS measuring. */
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 400ms $ease;
+
+  .item[data-open] & {
+    grid-template-rows: 1fr;
+  }
+}
+
+.panelInner {
+  overflow: hidden;
+}
+
+.answer {
+  margin: 0;
+  padding: 16px 16px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: right;
+  color: var(--color-ink-muted);
+}
