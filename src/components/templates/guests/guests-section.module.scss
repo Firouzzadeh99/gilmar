@@ -2,6 +2,8 @@
 
 /* ==========================================================================
    Guests — testimonials with orbiting avatars + synced dots
+
+   Mobile + tablet share the compact card stack (no orbit). Orbit only at xl.
    ========================================================================== */
 
 .section {
@@ -38,7 +40,7 @@
   letter-spacing: -1px;
   color: var(--color-ink);
 
-  @include respond-to("md") {
+  @include respond-to("xl") {
     font-size: 32px;
     letter-spacing: -1.4px;
   }
@@ -52,7 +54,7 @@
   line-height: 28px;
   color: var(--color-ink-muted);
 
-  @include respond-to("md") {
+  @include respond-to("xl") {
     font-size: 14px;
     line-height: 32px;
   }
@@ -73,7 +75,7 @@
   padding-block: 48px 12px;
   overflow: hidden;
 
-  @include respond-to("md") {
+  @include respond-to("xl") {
     margin-top: 40px;
     min-height: 520px;
     padding-block: 56px 20px;
@@ -199,7 +201,7 @@
   text-align: center;
   color: #4c4c4d;
 
-  @include respond-to("md") {
+  @include respond-to("xl") {
     font-size: 14px;
     line-height: 32px;
   }
@@ -264,7 +266,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Satellite avatars — desktop orbit; hidden on small screens
+   Satellite avatars — desktop orbit only (hidden on mobile + tablet)
    -------------------------------------------------------------------------- */
 
 .satellite {
@@ -283,7 +285,7 @@
     transform 220ms ease,
     box-shadow 220ms ease;
 
-  @include respond-to("md") {
+  @include respond-to("xl") {
     display: block;
   }
 

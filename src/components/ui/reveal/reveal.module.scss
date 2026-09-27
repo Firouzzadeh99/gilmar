@@ -8,12 +8,11 @@
 
 .reveal {
   opacity: 0;
-  // A shorter rise and a longer ease keep the entrance soft — especially on
-  // the photo collage, which is large enough that a hard snap reads as a jump.
-  transform: translate3d(0, 14px, 0);
+  // Soft rise — longer ease so sections melt in instead of popping.
+  transform: translate3d(0, 28px, 0);
   transition:
-    opacity 1400ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1400ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 1800ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1800ms cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0ms);
   will-change: opacity, transform;
 }

@@ -32,9 +32,9 @@ export function Reveal({ delay = 0, className, children }: RevealProps) {
         // One-shot: the element should not fade back out on the way up.
         observer.disconnect();
       },
-      // Waiting for a slice of the element keeps tall blocks from firing while
-      // they are still a sliver at the bottom of the screen.
-      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" },
+      // Start a little early so the soft rise is underway before the block
+      // sits fully in the viewport.
+      { threshold: 0.04, rootMargin: "0px 0px 10% 0px" },
     );
 
     observer.observe(el);
